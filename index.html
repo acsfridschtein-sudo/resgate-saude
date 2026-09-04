@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Simule possíveis indícios de reajuste abusivo em plano de saúde empresarial com menos de 30 beneficiários.">
+  <title>Resgate Saúde | Simulação de reajuste do plano empresarial</title>
+  <style>
+    :root{--navy:#081b2d;--blue:#0b3654;--teal:#0a8f83;--mint:#63dbc3;--paper:#f6f3ec;--white:#fff;--ink:#102235;--muted:#617181;--line:#d9e2e3;--warn:#fff4d7;--shadow:0 24px 70px rgba(8,27,45,.13)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55}button,input{font:inherit}a{color:inherit}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+    .top{background:var(--navy);color:#dce9ed;padding:13px 0;font-size:13px;text-align:center;letter-spacing:.02em}.nav{position:absolute;z-index:3;top:47px;left:0;right:0;padding:24px 0}.nav .wrap{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:11px;align-items:center;color:white;font-weight:800}.mark{width:38px;height:38px;border:2px solid var(--mint);border-radius:50%;display:grid;place-items:center;color:var(--mint);font-size:20px}.nav a{color:#dff8f4;text-decoration:none;font-size:14px}
+    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 80% 18%,rgba(99,219,195,.22),transparent 28%),linear-gradient(130deg,#071725,#0a2d46 72%,#0d4d59);color:white;padding:155px 0 96px}.hero:after{content:"";position:absolute;width:560px;height:560px;border:1px solid rgba(99,219,195,.15);border-radius:50%;right:-180px;top:-80px;box-shadow:0 0 0 70px rgba(99,219,195,.035),0 0 0 140px rgba(99,219,195,.025)}.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.12fr .88fr;gap:70px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:800;color:var(--mint)}.eyebrow:before{content:"";width:27px;height:2px;background:var(--mint)}h1{font-family:Georgia,serif;font-size:clamp(42px,5.4vw,72px);line-height:1.02;letter-spacing:-.04em;margin:22px 0}.hero p{font-size:19px;color:#cadde4;max-width:650px}.hero-actions{display:flex;gap:16px;align-items:center;margin-top:34px;flex-wrap:wrap}.btn{border:0;border-radius:10px;background:var(--mint);color:var(--navy);font-weight:800;padding:17px 23px;cursor:pointer;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;transition:.2s}.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}.micro{font-size:13px!important;color:#a9bec7!important}.signal-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(15px);border-radius:24px;padding:28px;box-shadow:var(--shadow)}.signal-card strong{font-family:Georgia,serif;font-size:27px}.signal{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12)}.signal:last-child{border:0}.signal b{display:block;color:var(--mint);font-size:20px}.signal span{font-size:14px;color:#c1d3d9}
+    section{padding:90px 0}.section-head{max-width:730px}.kicker{color:var(--teal);font-size:12px;font-weight:850;letter-spacing:.14em;text-transform:uppercase}.section-head h2{font:700 clamp(34px,4vw,52px)/1.08 Georgia,serif;margin:14px 0}.section-head p{color:var(--muted);font-size:18px}.problem-grid,.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}.card{background:white;border:1px solid #e5e8e3;border-radius:18px;padding:28px;box-shadow:0 12px 35px rgba(24,45,53,.055)}.num{color:var(--teal);font:700 30px Georgia,serif}.card h3{margin:14px 0 8px;font-size:19px}.card p{color:var(--muted);margin:0}.dark{background:var(--navy);color:white}.dark .section-head p{color:#bed0d6}.benefits{grid-template-columns:1fr 1fr}.benefit{border:1px solid rgba(255,255,255,.13);border-radius:20px;padding:32px;background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025))}.benefit small{color:var(--mint);font-weight:800;text-transform:uppercase;letter-spacing:.1em}.benefit h3{font:700 30px Georgia,serif;margin:12px 0}.benefit p{color:#bfd0d6}
+    .sim-section{background:#e9f2ef}.sim-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;align-items:start}.promise{position:sticky;top:30px}.promise ul{padding:0;list-style:none}.promise li{display:flex;gap:10px;margin:15px 0;color:#405968}.promise li:before{content:"✓";color:var(--teal);font-weight:900}.calculator{background:white;border-radius:24px;padding:34px;box-shadow:var(--shadow)}.step-label{color:var(--teal);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.1em}.calculator h3{font:700 29px Georgia,serif;margin:8px 0 24px}.field{margin:18px 0}.field label{display:block;font-weight:750;margin-bottom:8px}.money-wrap{position:relative}.money-wrap span{position:absolute;left:16px;top:14px;color:#70808d}.money-wrap input{padding-left:48px}.field input[type=text],.field input[type=tel]{width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:#fbfcfa;color:var(--ink);outline:0}.field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(10,143,131,.12)}.checks{display:grid;gap:11px;margin:19px 0 23px}.check{display:flex;gap:11px;align-items:flex-start;background:#f6f8f6;padding:13px;border-radius:9px;cursor:pointer}.check input{width:19px;height:19px;accent-color:var(--teal);margin-top:2px}.calculator .btn{width:100%}.privacy{text-align:center;font-size:12px;color:#71808b;margin:12px 0 0}.result{display:none;margin-top:24px;border-top:1px solid var(--line);padding-top:25px}.result.show{display:block}.status{border-radius:10px;padding:14px 16px;background:#e5f7f2;color:#075f57;font-weight:750}.status.review{background:var(--warn);color:#755314}.figures{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0}.figure{background:var(--navy);color:white;border-radius:13px;padding:19px}.figure small{color:#b8cbd2;display:block}.figure strong{font-size:24px;color:var(--mint)}.assumption{font-size:12px;color:#72818b}.lead-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}.whatsapp{background:#1fc66a;color:#082716}
+    .proof{background:white}.proof-box{display:grid;grid-template-columns:1fr 1fr;gap:50px;background:var(--paper);border-radius:22px;padding:43px}.proof h2{font:700 38px Georgia,serif;margin:0 0 15px}.proof p{color:var(--muted)}.docs{display:grid;gap:12px}.doc{background:white;padding:17px;border-radius:11px;display:flex;gap:13px;align-items:center}.doc b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#dff5ef;color:var(--teal)}footer{background:#06131f;color:#9fb0ba;padding:36px 0;font-size:12px}footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}footer strong{color:white}
+    @media(max-width:850px){.hero-grid,.sim-layout,.proof-box{grid-template-columns:1fr}.hero{padding-top:135px}.signal-card{display:none}.problem-grid{grid-template-columns:1fr}.benefits{grid-template-columns:1fr}.promise{position:static}.nav a{display:none}}@media(max-width:540px){.wrap{width:min(100% - 26px,1160px)}section{padding:65px 0}.calculator{padding:23px}.lead-fields,.figures{grid-template-columns:1fr}.hero p{font-size:17px}.proof-box{padding:26px}.top{font-size:11px}.nav{top:49px}}
+  </style>
+</head>
+<body>
+  <div class="top">Simulação informativa e gratuita • Análise individual necessária para confirmação</div>
+  <nav class="nav"><div class="wrap"><div class="brand"><div class="mark">✚</div><span>RESGATE SAÚDE</span></div><a href="#simulador">Fazer simulação →</a></div></nav>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Direitos do consumidor</span>
+        <h1>Sua mensalidade do plano empresarial disparou?</h1>
+        <p>Há contratos coletivos de pequeno porte que recebem reajustes muito superiores aos índices de referência. Descubra em poucos passos se o seu caso merece uma análise especializada.</p>
+        <div class="hero-actions"><a class="btn" href="#simulador">Simular possível economia</a><span class="micro">Leva cerca de 30 segundos</span></div>
+      </div>
+      <aside class="signal-card">
+        <strong>Seu contrato apresenta estes sinais?</strong>
+        <div class="signal"><b>01</b><span>Plano contratado por CNPJ, mas usado apenas pela família.</span></div>
+        <div class="signal"><b>02</b><span>Grupo com menos de 30 beneficiários.</span></div>
+        <div class="signal"><b>03</b><span>Reajustes muito acima da inflação e das referências da ANS.</span></div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="section-head"><span class="kicker">A anatomia do problema</span><h2>Empresarial no contrato. Familiar na prática.</h2><p>Alguns planos PME têm características de um núcleo familiar, embora sejam comercializados como coletivos. Essa configuração pode exigir uma revisão individual do critério de reajuste aplicado.</p></div>
+        <div class="problem-grid">
+          <article class="card"><span class="num">01</span><h3>O CNPJ abre a porta</h3><p>A contratação empresarial é usada mesmo quando os beneficiários pertencem a uma única família.</p></article>
+          <article class="card"><span class="num">02</span><h3>O grupo é pequeno</h3><p>Com poucas vidas, o consumidor pode ficar mais exposto a reajustes elevados e pouco transparentes.</p></article>
+          <article class="card"><span class="num">03</span><h3>A conta se acumula</h3><p>Cada percentual incide sobre uma base maior, ampliando a diferença ao longo dos anos.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark">
+      <div class="wrap">
+        <div class="section-head"><span class="kicker">O efeito duplo</span><h2>Reduzir o impacto futuro e investigar o que ficou para trás.</h2><p>Quando a análise jurídica e atuarial confirma a irregularidade, a estratégia pode envolver duas frentes complementares — sempre sujeitas às particularidades do contrato e à decisão judicial.</p></div>
+        <div class="benefits"><article class="benefit"><small>Frente 1</small><h3>Alívio na mensalidade</h3><p>Pedido de revisão dos reajustes e, quando juridicamente cabível, medida urgente para adequação da cobrança.</p></article><article class="benefit"><small>Frente 2</small><h3>Apuração do valor pago</h3><p>Cálculo da diferença potencial do período não prescrito para avaliar eventual restituição ou compensação.</p></article></div>
+      </div>
+    </section>
+
+    <section class="sim-section" id="simulador">
+      <div class="wrap sim-layout">
+        <div class="promise section-head"><span class="kicker">Simulador inicial</span><h2>Veja se há sinais que justificam uma análise.</h2><p>O resultado é uma estimativa preliminar baseada nos valores informados. Ele não substitui a leitura do contrato, dos boletos e da memória de cálculo.</p><ul><li>Resposta instantânea</li><li>Sem compromisso</li><li>Premissas apresentadas com transparência</li></ul></div>
+        <form class="calculator" id="calculator" novalidate>
+          <span class="step-label">Diagnóstico financeiro</span><h3>Preencha os dados do seu plano</h3>
+          <div class="field"><label for="current">Qual o valor da última mensalidade?</label><div class="money-wrap"><span>R$</span><input id="current" type="text" inputmode="decimal" placeholder="3.500,00" required></div></div>
+          <div class="field"><label for="old">Qual era o valor aproximado em janeiro de 2022?</label><div class="money-wrap"><span>R$</span><input id="old" type="text" inputmode="decimal" placeholder="1.800,00" required></div></div>
+          <div class="checks">
+            <label class="check"><input id="cnpj" type="checkbox"><span>O plano foi contratado por meio de CNPJ.</span></label>
+            <label class="check"><input id="family" type="checkbox"><span>Atende apenas minha família ou núcleo familiar.</span></label>
+            <label class="check"><input id="small" type="checkbox"><span>Possui menos de 30 beneficiários.</span></label>
+            <label class="check"><input id="high" type="checkbox"><span>Os reajustes pareceram muito acima da inflação ou referências da ANS.</span></label>
+          </div>
+          <button class="btn" type="submit">Calcular estimativa gratuita</button><p class="privacy">Seus dados financeiros não são enviados ao calcular.</p>
+          <div class="result" id="result" aria-live="polite">
+            <div class="status" id="status"></div>
+            <div class="figures"><div class="figure"><small>Mensalidade de referência estimada</small><strong id="fair">—</strong></div><div class="figure"><small>Diferença potencial em 36 meses*</small><strong id="refund">—</strong></div></div>
+            <p class="assumption" id="assumption">*Estimativa simplificada; não representa promessa de redução ou restituição. O valor real depende dos reajustes anuais, faixa etária, coparticipação, contrato, prescrição e decisão judicial.</p>
+            <div class="lead-fields"><div class="field"><label for="name">Seu nome</label><input id="name" type="text" placeholder="Como podemos chamar você?"></div><div class="field"><label for="phone">WhatsApp</label><input id="phone" type="tel" placeholder="(00) 00000-0000"></div></div>
+            <button class="btn whatsapp" type="button" id="contact">Quero validar meus valores agora</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="proof"><div class="wrap proof-box"><div><span class="kicker">Próximo passo</span><h2>Transforme a estimativa em uma análise precisa.</h2><p>A equipe jurídica e atuarial parceira confere a evolução das mensalidades e as cláusulas do contrato para explicar, sem compromisso, o cenário aplicável ao seu caso.</p></div><div class="docs"><div class="doc"><b>1</b><span>Separe os boletos disponíveis, preferencialmente desde janeiro de 2022.</span></div><div class="doc"><b>2</b><span>Tenha em mãos o contrato, proposta de adesão ou última apólice.</span></div><div class="doc"><b>3</b><span>Envie os documentos pelo canal seguro indicado no atendimento.</span></div></div></div></section>
+  </main>
+  <footer><div class="wrap"><div><strong>Resgate Saúde</strong><br>Consultoria em Direitos do Consumidor</div><div>Conteúdo informativo. Resultados dependem das circunstâncias de cada caso.<br>Não há garantia de êxito, redução ou restituição.</div></div></footer>
+
+  <script>
+    const $=s=>document.querySelector(s),money=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+    function numberFromBR(v){if(!v)return NaN;const clean=v.replace(/[^0-9,.-]/g,'');return Number(clean.includes(',')?clean.replace(/\./g,'').replace(',','.'):clean)}
+    function formatInput(e){let d=e.target.value.replace(/\D/g,'');e.target.value=d?(Number(d)/100).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}):''}
+    $('#current').addEventListener('input',formatInput);$('#old').addEventListener('input',formatInput);
+    let last={};
+    $('#calculator').addEventListener('submit',e=>{e.preventDefault();const current=numberFromBR($('#current').value),old=numberFromBR($('#old').value);if(!(current>0&&old>0)){alert('Informe os dois valores para continuar.');return}const checks=['#cnpj','#family','#small','#high'].filter(s=>$(s).checked).length;
+      /* Premissa comercial conservadora: crescimento composto de referência de 10% a.a. desde jan/2022. A análise atuarial deve substituir esta estimativa. */
+      const years=(Date.now()-new Date('2022-01-01').getTime())/(365.25*86400000),reference=old*Math.pow(1.10,years),fair=Math.min(current,reference),monthly=Math.max(0,current-fair),refund=monthly*36;
+      last={current,old,fair,refund,checks};$('#fair').textContent=money(fair);$('#refund').textContent=money(refund);const status=$('#status');status.className='status '+(checks>=3&&current>reference?'':'review');status.textContent=checks>=3&&current>reference?'Há indícios que justificam uma análise especializada do contrato.':'O resultado ainda precisa de validação: seus dados não formam, sozinhos, um diagnóstico conclusivo.';$('#result').classList.add('show');$('#result').scrollIntoView({behavior:'smooth',block:'nearest'});
+    });
+    $('#contact').addEventListener('click',()=>{const name=$('#name').value.trim(),phone=$('#phone').value.trim();if(!name||!phone){alert('Informe seu nome e WhatsApp para solicitar a validação.');return}const payload={nome:name,telefone:phone,mensalidadeAtual:last.current,mensalidadeJan2022:last.old,estimativaReferencia:last.fair,diferenca36Meses:last.refund,respostasPositivas:last.checks,origem:'Landing Page Resgate Saúde'};localStorage.setItem('resgateSaudeLead',JSON.stringify(payload));const msg=encodeURIComponent(`Olá! Sou ${name}. Fiz a simulação da Resgate Saúde e gostaria de validar meus valores. Minha mensalidade atual é ${money(last.current)} e em jan/2022 era ${money(last.old)}.`);window.open(`https://wa.me/?text=${msg}`,'_blank','noopener')});
+  </script>
+</body>
+</html>
